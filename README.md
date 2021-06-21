@@ -2,7 +2,7 @@
 机器学习应用开发综合实训
 
 ## 系统架构
-![Architecture][practice]
+![architecture](https://github.com/18651440358/practice/blob/master/src/assets/images/architecture.png?raw=true)
 
 ## 项目组成员
 | # | 姓名 | 学号 | 岗位 | 实际负责模块 |
