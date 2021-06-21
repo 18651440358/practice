@@ -5,10 +5,10 @@
 ![architecture](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/architecture.png)
 
 ## 系统快照
-![screenshot1](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/截屏2021-06-21 上午11.33.24.png)
-![screenshot2](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/截屏2021-06-21 上午11.33.36.png)
-![screenshot3](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/截屏2021-06-21 上午11.33.54.png)
-![screenshot4](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/截屏2021-06-21 上午11.34.29.png)
+![screenshot1](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/%E6%88%AA%E5%B1%8F2021-06-21%20%E4%B8%8A%E5%8D%8811.33.24.png)
+![screenshot2](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/%E6%88%AA%E5%B1%8F2021-06-21%20%E4%B8%8A%E5%8D%8811.33.36.png)
+![screenshot3](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/%E6%88%AA%E5%B1%8F2021-06-21%20%E4%B8%8A%E5%8D%8811.33.54.png)
+![screenshot4](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/%E6%88%AA%E5%B1%8F2021-06-21%20%E4%B8%8A%E5%8D%8811.34.29.png)
 
 ## 项目组成员
 | # | 姓名   | 学号 | 岗位 | 实际负责模块 |
