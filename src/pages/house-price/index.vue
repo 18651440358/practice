@@ -1,7 +1,7 @@
 <template>
   <div class="zc-page-house-price-index">
     <div class="subheader" ref="header">
-      <zc-subheader title="房屋价格预测系统"></zc-subheader>
+      <zc-subheader @click.native="findSchool" title="房屋价格预测系统"></zc-subheader>
     </div>
 <!--    -->
     <section class="content">
@@ -11,10 +11,17 @@
           <div class="panel">
 <!--            上传卡片-->
             <zc-card-house-upload v-if="!haveData" style="max-width: 300px"></zc-card-house-upload>
-            <swiper v-if="haveData">
-              <swiper-slide>11</swiper-slide>
-              <swiper-slide>22</swiper-slide>
-              <swiper-slide>33</swiper-slide>
+            <swiper v-if="haveData" :options="swiperOptions">
+              <swiper-slide v-for="(house,index) in houseList" :key="index">
+                <zc-card-house-item :distance="house.distance"
+                                    :house-age="house.houseAge"
+                                    :lat="house.lat"
+                                    :log="house.log"
+                                    :unit-price="house.unitPrice"
+                                    :store-count="house.storeCount"
+                                    :transaction-date="house.transactionDate"
+                                    @fly="flyHandle"></zc-card-house-item>
+              </swiper-slide>
             </swiper>
           </div>
         </zc-col>
@@ -32,9 +39,10 @@ import ZcSubheader from "@/components/subheader/subheader";
 import ZcRow from "@/components/row/row";
 import ZcCol from "@/components/col/col";
 import ZcCardHouseUpload from "@/components/card-house-upload/card";
+import ZcCardHouseItem from "@/components/card-house-item/card";
 export default {
   name: "zc-page-house-price-index",
-  components: {ZcCardHouseUpload, ZcCol, ZcRow, ZcSubheader, Swiper, SwiperSlide},
+  components: {ZcCardHouseItem, ZcCardHouseUpload, ZcCol, ZcRow, ZcSubheader, Swiper, SwiperSlide},
   directives: {
     swiper: directive
   },
@@ -42,7 +50,85 @@ export default {
     return {
       map: {},
       height: 0,
-      haveData: false
+      haveData: true,
+      houseList: [
+        {
+          distance: 84.87882,
+          houseAge: 32,
+          lat: 24.98298,
+          log: 121.54024,
+          unitPrice: 37.9,
+          storeCount: 10,
+          transactionDate: '2012-10'
+        },
+        {
+          distance: 84.87882,
+          houseAge: 32,
+          lat: 24.98034,
+          log: 121.53951,
+          unitPrice: 37.9,
+          storeCount: 10,
+          transactionDate: '2012-10'
+        },
+        {
+          distance: 84.87882,
+          houseAge: 32,
+          lat: 24.97349,
+          log: 121.53372,
+          unitPrice: 37.9,
+          storeCount: 10,
+          transactionDate: '2012-10'
+        },
+        {
+          distance: 84.87882,
+          houseAge: 32,
+          lat: 24.98746,
+          log: 121.54391,
+          unitPrice: 37.9,
+          storeCount: 10,
+          transactionDate: '2012-10'
+        },
+        {
+          distance: 84.87882,
+          houseAge: 32,
+          lat: 24.97937,
+          log: 121.54245,
+          unitPrice: 37.9,
+          storeCount: 10,
+          transactionDate: '2012-10'
+        },
+        {
+          distance: 84.87882,
+          houseAge: 32,
+          lat: 24.96305,
+          log: 121.51254,
+          unitPrice: 37.9,
+          storeCount: 10,
+          transactionDate: '2012-10'
+        },
+        {
+          distance: 84.87882,
+          houseAge: 32,
+          lat: 24.97933,
+          log: 121.53642,
+          unitPrice: 37.9,
+          storeCount: 10,
+          transactionDate: '2012-10'
+        },
+        {
+          distance: 84.87882,
+          houseAge: 32,
+          lat: 24.98042,
+          log: 121.54228,
+          unitPrice: 37.9,
+          storeCount: 10,
+          transactionDate: '2012-10'
+        }
+      ],
+      swiperOptions: {
+        slidesPerView: 4,
+        spaceBetween : 20,
+      }
     }
   },
   computed: {
@@ -65,27 +151,31 @@ export default {
       this.map = new mapboxgl.Map({
         container: 'map', // container id 绑定的组件的id
         style: 'mapbox://styles/mapbox/navigation-day-v1', //地图样式，可以使用官网预定义的样式,也可以自定义
-        center: [118.92983417850085, 32.12182486408519], // 初始坐标系，这个是南京建邺附近
-        zoom: 15,     // starting zoom 地图初始的拉伸比例
+        center: [118.93592026803236,32.120796221894416], // 初始坐标系，这个是南京建邺附近
+        zoom: 16,     // starting zoom 地图初始的拉伸比例
         pitch: 0,  //地图的角度，不写默认是0，取值是0-60度，一般在3D中使用
         bearing: 0, //地图的初始方向，值是北的逆时针度数，默认是0，即是正北
         antialias: true, //抗锯齿，通过false关闭提升性能
       });
-      this.map.on('click', function() {
-        console.log('123')
-      });
     },
-    fly(index){
-      if(index === 1)
-        this.map.flyTo({
-          center: [121.54024,24.98298],
-          essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
-      else
-        this.map.flyTo({
-          center: [121.51649,24.96447],
-          essential: true // this animation is considered essential with respect to prefers-reduced-motion
-        });
+    flyHandle({log,lat}){
+      // if(index === 1)
+      //
+      // else
+      //   this.map.flyTo({
+      //     center: [121.51649,24.96447],
+      //     essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      //   });
+      this.map.flyTo({
+            center: [log,lat],
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+          });
+    },
+    findSchool(){
+      this.map.flyTo({
+        center: [118.93592026803236,32.120796221894416],
+        essential: true // this animation is considered essential with respect to prefers-reduced-motion
+      });
     }
   },
   mounted() {
@@ -95,6 +185,9 @@ export default {
       // 初始化地图
       this.initMap();
     })
+  },
+  destroyed() {
+    this.map = {}
   }
 }
 </script>
@@ -123,5 +216,6 @@ export default {
   position: absolute;
   bottom: 0;
   left: 0;
+  filter: drop-shadow(0 0 30px rgba(82,63,105, .3));
 }
 </style>

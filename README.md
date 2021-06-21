@@ -4,6 +4,12 @@
 ## 系统架构
 ![architecture](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/architecture.png)
 
+## 系统快照
+![screenshot1](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/截屏2021-06-21 上午11.33.24.png)
+![screenshot2](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/截屏2021-06-21 上午11.33.36.png)
+![screenshot3](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/截屏2021-06-21 上午11.33.54.png)
+![screenshot4](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/screenshot/截屏2021-06-21 上午11.34.29.png)
+
 ## 项目组成员
 | # | 姓名   | 学号 | 岗位 | 实际负责模块 |
 |---|---|---|---|---|
