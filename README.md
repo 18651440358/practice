@@ -1,24 +1,29 @@
 # practice
+机器学习应用开发综合实训
 
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+## 系统架构
+```mermaid
+graph TD
+client1-->|read / write|SVN((SVN server))
+client2-->|read only|SVN
+client3-->|read / write|SVN
+client4-->|read only|SVN
+client5(...)-->SVN
+SVN---|store the data|sharedrive
 ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 项目组成员
+| # | 姓名 | 学号 | 岗位 | 实际负责模块 |
+|---|---|---|---|---|
+|1|周灿|2002922124|项目经理|用户交互页面设计与制作、项目全部使用技术&框架选定、项目部署上线|
+|2|张芳龙|-|产品经理|-|
+|3|卞一轩|-|系统工程师|-|
+|4|陈思文|-|软件工程师|-|
+|5|徐思媛|-|UCD工程师|-|
+|6|周耀|-|测试工程师|-|
+|7|衡富豪|-|文案|协助测试工程师、产品经理、系统工程系制作相应的说明|
+|8|郑佳利|-|文案|协助测试工程师、产品经理、系统工程系制作相应的说明|
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 开发日志
+> ### 2021年6月15日
+> 指导老师布置实训内容及任务, 项目组开始对整个系统开会进行讨论,最后完成项目开发分工、用户界面使用选定基于浏览器的 `Web` 应用
