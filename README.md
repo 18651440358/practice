@@ -2,15 +2,7 @@
 机器学习应用开发综合实训
 
 ## 系统架构
-```mermaid
-graph TD
-client1-->|read / write|SVN((SVN server))
-client2-->|read only|SVN
-client3-->|read / write|SVN
-client4-->|read only|SVN
-client5(...)-->SVN
-SVN---|store the data|sharedrive
-```
+![Architecture][practice]
 
 ## 项目组成员
 | # | 姓名 | 学号 | 岗位 | 实际负责模块 |

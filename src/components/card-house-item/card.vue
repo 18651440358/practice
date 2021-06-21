@@ -12,6 +12,15 @@
 <script>
 export default {
   name: "zc-card-house-item",
+  props: {
+    distance: Number,
+    transactionDate: String,
+    houseAge: Number,
+    storeCount: Number,
+    log: Number,
+    lat: Number,
+    unitPrice: Number
+  },
   methods: {
     // 随机选择图片
     randomPortrait() {
