@@ -5,7 +5,7 @@
 <!--      距离-->
       <div class="distance">
         <i class="fi-sr-marker"></i>
-        <span>地铁站{{distance.toFixed(2)}}米</span>
+        <span>地铁 {{distance.toFixed(2)}} 米</span>
       </div>
     </div>
     <div class="house-info">

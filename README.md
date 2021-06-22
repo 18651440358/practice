@@ -1,6 +1,15 @@
 # practice
 机器学习应用开发综合实训
 
+## 使用技术
+- Vue
+- flask
+- MetisUI (自研基于vue的前端UI框架)
+
+## 数据库
+- MySql
+- Redis
+
 ## 系统架构
 ![architecture](https://raw.githubusercontent.com/18651440358/practice/master/src/assets/images/architecture.png)
 

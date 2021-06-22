@@ -20,7 +20,7 @@ import { EventBus } from "@/util/event-bus.js";
   }
 </script>
 
-<style>
+<style lang="scss">
   [v-cloak]{
     display: none;
   }
