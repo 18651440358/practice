@@ -228,7 +228,7 @@ export default {
       this.map = new mapboxgl.Map({
         container: 'map', // container id 绑定的组件的id
         style: 'mapbox://styles/mapbox/navigation-day-v1', //地图样式，可以使用官网预定义的样式,也可以自定义
-        center: [118.93592026803236,32.120796221894416], // 初始坐标系，这个是南京建邺附近
+        center: [118.93592026803236,32.120796221894416],
         zoom: 16,     // starting zoom 地图初始的拉伸比例
         pitch: 0,  //地图的角度，不写默认是0，取值是0-60度，一般在3D中使用
         bearing: 0, //地图的初始方向，值是北的逆时针度数，默认是0，即是正北
