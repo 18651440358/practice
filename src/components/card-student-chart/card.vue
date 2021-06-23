@@ -26,7 +26,7 @@
       </div>
     </div>
 <!--    图表-->
-    <apexchart ref="apexchart" type="scatter" :height="height" :options="chartOptions" :series="series"></apexchart>
+    <apexchart ref="apexchart" type="scatter" :height="317" :options="chartOptions" :series="series"></apexchart>
   </div>
 </template>
 
