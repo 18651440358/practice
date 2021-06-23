@@ -22,7 +22,7 @@ export default {
   .zc-card-student-upload{
     background: #fff;
     height: 100%;
-    max-height: 436px;
+    //max-height: 436px;
     border-radius: 8px;
     padding: 30px;
     box-shadow: 0 0 30px 0 rgba(82,63,105, .05);
