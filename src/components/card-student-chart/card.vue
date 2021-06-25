@@ -26,7 +26,8 @@
       </div>
     </div>
 <!--    图表-->
-    <apexchart ref="apexchart" type="scatter" :height="317" :options="chartOptions" :series="series"></apexchart>
+    <apexchart v-if="hasData" ref="apexchart" type="scatter" :height="317" :options="chartOptions" :series="series"></apexchart>
+    <img v-if="!hasData" :src="require('./work.png')" style="width: 100%;margin: 0 auto;object-fit: cover;object-position: center center" height="317">
   </div>
 </template>
 
@@ -41,38 +42,23 @@ export default {
     var _this = this;
     return {
       height: 0,
+      hasData: false,
       series: [
         {
           name: "第一类",
-          data: [
-            {x: 20,y:80,sno: "C001"},
-            {x: 10,y:60,sno: "C002"},
-            {x: 30,y:70,sno: "C002"},
-          ]
+          data: []
         },
         {
           name: "第二类",
-          data: [
-            {x: 60,y:70,sno: "C001"},
-            {x: 70,y:20,sno: "C001"},
-            {x: 65,y:24,sno: "C001"},
-          ]
+          data: []
         },
         {
           name: "第三类",
-          data: [
-            {x: 90,y:50,sno: "C001"},
-            {x: 80,y:40,sno: "C001"},
-            {x: 35,y:23,sno: "C001"},
-          ]
+          data: []
         },
         {
           name: "第四类",
-          data: [
-            {x: 60,y:55,sno: "C001"},
-            {x: 14,y:97,sno: "C001"},
-            {x: 85,y:59,sno: "C001"},
-          ]
+          data: []
         }
       ],
       chartOptions: {
@@ -155,6 +141,36 @@ export default {
     this.$nextTick(() => {
       // 初始化
       this.domInit();
+    })
+    var _this = this;
+
+    // 获得
+    this.$bus.on('gotStudentData', (data) => {
+      this.series[0].data = []
+      this.series[1].data = []
+      this.series[2].data = []
+      this.series[3].data = []
+      var arrayA = data.filter((item) => {return item[4] === 0})
+      arrayA.forEach((item) => {
+        _this.series[0].data.push({x: item[3],y: item[2], sno: item[1]})
+      })
+      var arrayB = data.filter((item) => {return item[4] === 1})
+      arrayB.forEach((item) => {
+        _this.series[1].data.push({x: item[3],y: item[2], sno: item[1]})
+      })
+      var arrayC = data.filter((item) => {return item[4] === 2})
+      arrayC.forEach((item) => {
+        _this.series[2].data.push({x: item[3],y: item[2], sno: item[1]})
+      })
+      var arrayD = data.filter((item) => {return item[4] === 3})
+      arrayD.forEach((item) => {
+        _this.series[3].data.push({x: item[3],y: item[2], sno: item[1]})
+      })
+      this.hasData = true
+      this.$nextTick(() => {
+        this.$refs.apexchart.updateSeries(this.series)
+      })
+      console.log(data)
     })
   },
   methods: {

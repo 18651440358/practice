@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>zc-page-cancer-index</h1>
-    <button>发送数据</button>
+    <button @click="sendMsg">发送数据</button>
     <ul>
       <li v-for="(item,index) in list" :key="index">
         <p>{{item.user_code}}</p>
@@ -26,6 +26,16 @@ export default {
           this.list = response.data;
           window.console.log(response)
         })
+  },
+  methods: {
+    sendMsg() {
+      axios.post(this.$domain + '/admin/sendMsg',{
+        a: 1,
+        b: 3
+      }).then(res => {
+        window.console.log(res)
+      })
+    }
   }
 }
 </script>

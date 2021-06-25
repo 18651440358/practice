@@ -13,6 +13,9 @@ import housePrice from '../pages/house-price/index.vue';
 // 癌症诊断预测
 import cancer from '../pages/cancer/index.vue';
 
+// 登录
+import login from '../pages/login/login.vue'
+
 const routes = [
   {path: '/', redirect: '/index/student'},
   {
@@ -33,6 +36,10 @@ const routes = [
     ],
     component: system
   },
+  {
+    path: '/login',
+    component: login
+  }
 ]
 
 const router = new VueRouter({

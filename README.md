@@ -5,6 +5,7 @@
 - Vue
 - flask
 - MetisUI (自研基于vue的前端UI框架)
+- ThemisPool (自研使用Python实现的Mysql连接池) [ThemisPool git](https://github.com/18651440358/ThemisPool)
 
 ## 数据库
 - MySql

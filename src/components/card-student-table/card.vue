@@ -57,10 +57,10 @@
                 <span>数学成绩</span>
               </td>
               <td>
-                <span class="tab info" v-if="stu.category === 1">第一类</span>
-                <span class="tab success" v-if="stu.category === 2">第二类</span>
-                <span class="tab warning" v-if="stu.category === 3">第三类</span>
-                <span class="tab danger" v-if="stu.category === 4">第四类</span>
+                <span class="tab info" v-if="stu.category === 0">第一类</span>
+                <span class="tab success" v-if="stu.category === 1">第二类</span>
+                <span class="tab warning" v-if="stu.category === 2">第三类</span>
+                <span class="tab danger" v-if="stu.category === 3">第四类</span>
               </td>
               <td class="last">
                 <div class="buttons">
@@ -104,16 +104,36 @@ export default {
         {chinese: 90,math: 94, sno: '2002922124', category: 4},
         {chinese: 90,math: 94, sno: '2002922124', category: 1},
       ],
+      initial: [],
       search: '',
       category: ["第一类","第二类","第三类","第四类"],
       currentCategory: '全部学生',
-      showTable: true
+      showTable: false
+    }
+  },
+  watch: {
+    search: function (val){
+      this.retrieveData(val,this.currentCategory)
+    },
+    currentCategory: function (val){
+      this.retrieveData(this.search,val)
     }
   },
   computed: {
 
   },
   methods: {
+    retrieveData(search,currentCategory){
+      var category = currentCategory === "第一类" ? 0 : currentCategory === "第二类" ? 1 : currentCategory === "第三类" ? 2 : currentCategory === "第四类" ? 3 : -1;
+      if(search !== '' && category !== -1)
+        this.students = this.initial.filter((item) => {return item.sno.indexOf(search) !== -1 && item.category === category})
+      else if(search !== '' && category === -1)
+        this.students = this.initial.filter((item) => {return item.sno.indexOf(search) !== -1})
+      else if(search === '' && category !== -1)
+        this.students = this.initial.filter((item) => {return item.category === category})
+      else
+        this.students = this.initial
+    },
     // 选择类别
     selectCategory(msg) {
       console.log(msg)
@@ -125,6 +145,20 @@ export default {
     randomAvatars() {
       return require('@/assets/images/avatars/' + (1 + Math.floor(Math.random() * 9)) + '.svg')
     }
+  },
+  mounted() {
+    var _this = this;
+    this.$bus.on('gotStudentData', (data) => {
+      _this.students = []
+      _this.initial = []
+      data.forEach((item) => {
+        _this.students.push({sno: item[1], chinese: item[2], math: item[3], category: item[4]})
+        _this.initial.push({sno: item[1], chinese: item[2], math: item[3], category: item[4]})
+      })
+      this.$nextTick(() => {
+        this.showTable = true
+      })
+    })
   }
 }
 </script>
