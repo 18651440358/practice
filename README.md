@@ -37,7 +37,7 @@
 > 周灿同学完成了 `学生成绩预测` 系统所有后端交互功能
 
 > ### 2021年6月24日
-> 周灿同学使用 `python` 编写了一个针对 `Mysql` 的连接池。
+> 周灿同学使用 `python` 编写了一个针对 `Mysql` 的连接池 `ThemisPool`。 [ThemisPool git](https://github.com/18651440358/ThemisPool)
 
 > ### 2021年6月22日
 >卞一轩、周灿同学成功搭建了 `FLask` 服务，完成了第一个 `Hello World` 请求处理，并尝试了简单的前后端交互json数据。
