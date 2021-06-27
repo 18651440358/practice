@@ -82,7 +82,7 @@
               </zc-dropdown-item>
             </div>
             <div class="popup-footer">
-              <a class="sign-out">登出</a>
+              <router-link to="/login" class="sign-out">登出</router-link>
               <a class="pro">升级计划</a>
             </div>
           </div>
@@ -120,6 +120,13 @@ export default {
         portrait: require('@/assets/images/avatars/5.svg')
       }
     }
+  },
+  created() {
+    this.$bus.on('user', data => {
+      this.currentUser.userName = data[3]
+      this.currentUser.rote = data[9]
+      this.currentUser.portrait = require('@/assets/images/avatars/' + data[5] + '.svg')
+    })
   }
 }
 </script>

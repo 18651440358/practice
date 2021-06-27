@@ -1,7 +1,7 @@
 <template>
   <div class="zc-page-house-price-index">
     <div class="subheader" ref="header">
-      <zc-subheader @click.native="findSchool" title="房屋价格预测系统"></zc-subheader>
+      <zc-subheader title="房屋价格预测系统"></zc-subheader>
     </div>
 <!--    -->
     <section class="content">
@@ -25,7 +25,7 @@
             </swiper>
           </div>
 <!--          filter-->
-          <div class="filter-button" @click="filterShow=!filterShow">
+          <div class="filter-button" @click="filterShow=!filterShow" v-if="haveData">
             <transition name="filter">
               <i v-if="!filterShow" class="fi-sr-apps"></i>
             </transition>
@@ -48,7 +48,7 @@
                   <h3>距离地铁站距离
                     <span>{{forecast.distance[0]}}-{{forecast.distance[1]}}</span>
                   </h3>
-                  <zc-slider name="区间占比" interval v-model="forecast.distance" :max="1000" :min="0" :data="distanceInterval"></zc-slider>
+                  <zc-slider name="区间拥有房屋" interval v-model="forecast.distance" :max="5000" :min="0" :data="distanceInterval"></zc-slider>
                 </div>
               </zc-col>
               <zc-col :grid="7">
@@ -79,8 +79,8 @@
               </zc-col>
               <zc-col :grid="10">
                 <div class="input-button">
-                  <a>清除过滤</a>
-                  <a class="search">启用过滤</a>
+                  <a @click="findSchool">清除过滤</a>
+                  <a class="search" @click="filter">启用过滤</a>
                 </div>
               </zc-col>
             </zc-row>
@@ -112,7 +112,7 @@ export default {
     return {
       map: {},
       height: 0,
-      haveData: true,
+      haveData: false,
       houseList: [
         {
           distance: 84.87882,
@@ -193,7 +193,7 @@ export default {
       },
       filterShow: false,
       forecast: {
-        distance: [200,500],
+        distance: [1000,3000],
         houseAge: undefined,
         log: undefined,
         lat: undefined,
@@ -216,6 +216,12 @@ export default {
     }
   },
   methods: {
+    // 过滤
+    filter() {
+      this.houseList = this.rawData.filter((item) => {
+        return (this.forecast.houseAge !== undefined) && item.houseAge === this.forecast.houseAge
+      })
+    },
     // 初始化
     initDom() {
       var winHeight = document.documentElement.clientHeight - 110;
@@ -246,15 +252,16 @@ export default {
         center: [118.93592026803236,32.120796221894416],
         essential: true // this animation is considered essential with respect to prefers-reduced-motion
       });
+      this.houseList = this.rawData
     },
     // 初始化图表
     initChart() {
       var priceRangeList = []
       priceRangeList.push({x: 0,y: 0})
-      for(var i = 100; i <= 900; i += 100) {
-        priceRangeList.push({x: i, y: Math.floor(Math.random() * 80 + 20)})
+      for(var i = 100; i <= 4900; i += 200) {
+        priceRangeList.push({x: i, y: Math.floor(Math.random() * 60 + 20)})
       }
-      priceRangeList.push({x: 1000,y: 0})
+      priceRangeList.push({x: 5000,y: 0})
       this.distanceInterval = priceRangeList
     },
     houseAgeInput(e) {
@@ -293,6 +300,17 @@ export default {
     this.$nextTick(() => {
       // 初始化地图
       this.initMap();
+    })
+  },
+  created() {
+    this.$bus.on('gotHouseData', data => {
+      this.houseList = []
+      this.rawData = []
+      data.forEach((item) => {
+        this.houseList.push({'houseCode':item[1],'houseAge':item[2], 'distance': item[3], 'storeCount': item[4], 'log': item[5], 'lat': item[6], 'unitPrice': item[7]})
+        this.rawData.push({'houseCode':item[1],'houseAge':item[2], 'distance': item[3], 'storeCount': item[4], 'log': item[5], 'lat': item[6], 'unitPrice': item[7]})
+      })
+      this.haveData = true
     })
   },
   destroyed() {

@@ -2,13 +2,39 @@
   <div class="zc-card-house-upload">
     <h4>House Price Forecasting</h4>
     <p>请点击按钮选择并上传csv格式的房价数据并对房价进行预测月查询管理。</p>
-    <a>选择数据</a>
+    <a @click="selectDate">选择数据</a>
+    <input style="position: absolute;opacity: 0;z-index: -2" @change="submitFile" name="file" type="file" ref="file" accept=".csv">
   </div>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: "zc-card-house-upload"
+  name: "zc-card-house-upload",
+  methods: {
+    selectDate() {
+      // 选择文件
+      this.$refs.file.click();
+    },
+    submitFile(e) {
+      let self = this
+      let file = e.target.files[0]
+      let param = new FormData()  // 创建form对象
+      param.append('file', file)  // 通过append向form对象添加数据
+      // console.log(param.get('file')) // FormData私有类对象，访问不到，可以通过get判断值是否传进去
+      let config = {
+        headers: {'Content-Type': 'multipart/form-data'}
+      }
+      // 添加请求头
+      axios.post(this.$domain + '/update/housesInfo', param, config)
+          .then(res => {
+            // 发送数据
+            self.$bus.emit('gotHouseData', res.data)
+          })
+
+    }
+  }
 }
 </script>
 

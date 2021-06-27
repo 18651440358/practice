@@ -36,7 +36,13 @@ import ZcCardStudentChart from "@/components/card-student-chart/card";
 import ZcCardStudentTable from "@/components/card-student-table/card";
 export default {
   name: "zc-page-student-index",
-  components: {ZcCardStudentTable, ZcCardStudentChart, ZcCardStudentUpload, ZcCol, ZcRow, ZcSubheader}
+  components: {ZcCardStudentTable, ZcCardStudentChart, ZcCardStudentUpload, ZcCol, ZcRow, ZcSubheader},
+  mounted() {
+    // 发送登录数据
+    this.$bus.emit('user',this.$route.params.user[0])
+    // 发送团队信息
+    this.$bus.emit('team',this.$route.params.team)
+  }
 }
 </script>
 

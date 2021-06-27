@@ -34,6 +34,12 @@ export default {
       let config = {
         headers: {'Content-Type': 'multipart/form-data'}
       }
+      // 提示上传
+      this.$rbNote({
+        title: '正在上传文件',
+        messageType: 'loading2',
+        message: '正在生成学生预测模型。。。'
+      })
       // 添加请求头
       axios.post(this.$domain + '/update/studentsInfo', param, config)
           .then(res => {

@@ -84,8 +84,6 @@ export default {
     setTimeout(() => {
       this.value && this.initSlider()
     },1000)
-
-    console.log(this.$refs.slider.offsetWidth)
   },
 
   computed: {

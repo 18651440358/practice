@@ -169,8 +169,14 @@ export default {
       this.hasData = true
       this.$nextTick(() => {
         this.$refs.apexchart.updateSeries(this.series)
+        // 提示上传
+        this.$rbNote({
+          title: '渲染成功',
+          messageType: 'success',
+          message: '学生成绩数据可视化渲染完成。'
+        })
       })
-      console.log(data)
+
     })
   },
   methods: {

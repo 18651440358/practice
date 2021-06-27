@@ -49,11 +49,6 @@ export default {
       password: '123456',
       email_state: 1,
       password_state: 1,
-      adcode: '',
-      city: '',
-      weather: '',
-      temperature: '',
-      info: ''
     }
   },
   mounted(){
@@ -100,8 +95,17 @@ export default {
           })
           // 存入当前token
           window.sessionStorage.setItem("token", res.data.user);
-          // 跳转到主页
-          this.$refs
+          // 发送当前登录数据
+          let team = res.data.team
+          let user = team.filter(item => item[1] === res.data.user)
+          this.$router.push({
+            // path: '/index/student',
+            name: 'student',
+            params: {
+              user: user,
+              team: team
+            }
+          })
         }else{
           // 登录失败
           this.$rbNote({
@@ -215,6 +219,7 @@ export default {
   }
   .input-group input[type=password]{
     letter-spacing: 3px;
+    font-size: 1.5rem;
   }
 
   .logo-button{

@@ -20,11 +20,11 @@
       <li v-for="(user,index) in teamMember" :key="index">
         <div class="user-group">
           <div class="user-portrait">
-            <img :src="user.portrait">
+            <img :src="require('@/assets/images/avatars/'+ user[5] + '.svg' )">
           </div>
           <div class="user-info">
-            <h3>{{user.userName}}</h3>
-            <span>{{user.rote}}</span>
+            <h3>{{user[3]}}</h3>
+            <span>{{user[9]}}</span>
           </div>
         </div>
         <a v-zc-chat.private="'U'+index">
@@ -40,49 +40,22 @@ export default {
   name: "zc-card-sidebar-team",
   data() {
     return {
-      teamMember: [
-        {
-          portrait: require('@/assets/images/avatars/1.svg'),
-          userName: 'Rabbit Doomsday',
-          rote: '项目经理'
-        },
-        {
-          portrait: require('@/assets/images/avatars/2.svg'),
-          userName: 'Rabbit Doomsday',
-          rote: '项目经理'
-        },
-        {
-          portrait: require('@/assets/images/avatars/3.svg'),
-          userName: 'Rabbit Doomsday',
-          rote: '项目经理'
-        },
-        {
-          portrait: require('@/assets/images/avatars/4.svg'),
-          userName: 'Rabbit Doomsday',
-          rote: '项目经理'
-        },
-        {
-          portrait: require('@/assets/images/avatars/5.svg'),
-          userName: 'Rabbit Doomsday',
-          rote: '项目经理'
-        },
-        {
-          portrait: require('@/assets/images/avatars/6.svg'),
-          userName: 'Rabbit Doomsday',
-          rote: '项目经理'
-        },
-        {
-          portrait: require('@/assets/images/avatars/7.svg'),
-          userName: 'Rabbit Doomsday',
-          rote: '项目经理'
-        },
-        {
-          portrait: require('@/assets/images/avatars/8.svg'),
-          userName: 'Rabbit Doomsday',
-          rote: '项目经理'
-        }
-      ]
+      teamMember: []
     }
+  },
+  created() {
+    this.$bus.on('team', team => {
+      this.teamMember = team
+      // 提示上传
+      setTimeout(() => {
+        this.$rbNote({
+          title: '获取成功',
+          messageType: 'success',
+          message: '实训第四小组成员获取成功。'
+        })
+      },300)
+
+    })
   }
 }
 </script>

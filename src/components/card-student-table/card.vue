@@ -158,6 +158,14 @@ export default {
       this.$nextTick(() => {
         this.showTable = true
       })
+      setTimeout(() => {
+        // 提示上传
+        this.$rbNote({
+          title: '拉取成功',
+          messageType: 'success',
+          message: '学生成绩数据拉取完成。'
+        })
+      }, 500)
     })
   }
 }

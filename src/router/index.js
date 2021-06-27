@@ -3,6 +3,9 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter)
 
+// 登录
+import login from '../pages/login/login.vue'
+
 // 系统框架
 import system from '../pages/system/index.vue';
 
@@ -13,15 +16,14 @@ import housePrice from '../pages/house-price/index.vue';
 // 癌症诊断预测
 import cancer from '../pages/cancer/index.vue';
 
-// 登录
-import login from '../pages/login/login.vue'
 
 const routes = [
-  {path: '/', redirect: '/index/student'},
+  {path: '/', redirect: '/login'},
   {
     path: '/index',
     children: [
       {
+        name: 'student',
         path: 'student',
         component: student
       },
