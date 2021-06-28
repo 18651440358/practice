@@ -37,6 +37,9 @@ export default {
   },
 
   watch: {
+    value: function (val){
+      val && this.initSlider()
+    },
     name: function (val) {
       this.name = val
       this.series = [

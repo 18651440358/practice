@@ -98,7 +98,8 @@
     </div>
 <!--    时间轴-->
     <div class="timeline">
-      <zc-card-sidebar-timeline></zc-card-sidebar-timeline>
+      <zc-card-sidebar-timeline v-if="$route.path !== '/index/house-price'"></zc-card-sidebar-timeline>
+      <zc-card-forecast-house-price v-else></zc-card-forecast-house-price>
     </div>
   </div>
 </template>
@@ -109,9 +110,12 @@ import ZcDropdownMenu from "@/components/dropdown-menu/dropdown-menu";
 import ZcDropdownItem from "@/components/dropdown-item/dropdown-item";
 import ZcCardSidebarTeam from "@/components/card-sidebar-team/card";
 import ZcCardSidebarTimeline from "@/components/card-sidebar-timeline/card";
+import ZcCardForecastHousePrice from "@/components/card-forecast-housePrice/card";
 export default {
   name: "zc-sidebar",
-  components: {ZcCardSidebarTimeline, ZcCardSidebarTeam, ZcDropdownItem, ZcDropdownMenu, ZcDropdown},
+  components: {
+    ZcCardForecastHousePrice,
+    ZcCardSidebarTimeline, ZcCardSidebarTeam, ZcDropdownItem, ZcDropdownMenu, ZcDropdown},
   data() {
     return {
       currentUser: {

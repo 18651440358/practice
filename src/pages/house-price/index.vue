@@ -218,10 +218,16 @@ export default {
   methods: {
     // 过滤
     filter() {
-      this.houseList = this.rawData.filter((item) => {
-        return (this.forecast.houseAge !== undefined) && item.houseAge === this.forecast.houseAge
-      })
-    },
+      this.houseList = this.rawData.filter((item) => {return item.distance >= this.forecast.distance[0] && item.distance <= this.forecast.distance[1]})
+      if(this.forecast.houseAge !== undefined)
+        this.houseList = this.houseList.filter(item => parseFloat(item.houseAge) === parseFloat(this.forecast.houseAge))
+      if(this.forecast.storeCount !== undefined)
+        this.houseList = this.houseList.filter(item => parseInt(item.storeCount) === parseInt(this.forecast.storeCount))
+      if(this.forecast.log !== undefined)
+        this.houseList = this.houseList.filter(item => parseFloat(item.log) === parseFloat(this.forecast.log))
+      if(this.forecast.lat !== undefined)
+          this.houseList = this.houseList.filter(item =>  parseFloat(item.lat) ===  parseFloat(this.forecast.lat))
+      },
     // 初始化
     initDom() {
       var winHeight = document.documentElement.clientHeight - 110;
@@ -246,6 +252,7 @@ export default {
         center: [log,lat],
         essential: true // this animation is considered essential with respect to prefers-reduced-motion
       });
+      this.houseList = this.rawData
     },
     findSchool(){
       this.map.flyTo({
@@ -253,6 +260,13 @@ export default {
         essential: true // this animation is considered essential with respect to prefers-reduced-motion
       });
       this.houseList = this.rawData
+      this.forecast = {
+        distance: [1000,3000],
+        houseAge: undefined,
+        log: undefined,
+        lat: undefined,
+        storeCount: undefined
+      }
     },
     // 初始化图表
     initChart() {
