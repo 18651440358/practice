@@ -5,7 +5,7 @@ import router from './router'
 Vue.config.productionTip = false
 
 // 字体注册
-import "@/assets/fonts/UIcons/font.scss";
+import "@/assets/fonts/UIcons/font.css";
 import "@/assets/fonts/Monoton/font.css";
 
 // 安装tooltip
@@ -20,7 +20,8 @@ Vue.use(chatSidebarCard.directive)
 import '@/util/filters.js';
 
 // 定义域名
-Vue.prototype.$domain = 'http://127.0.0.1:5000';
+// Vue.prototype.$domain = 'http://101.132.226.115:5000';
+Vue.prototype.$domain = 'http://localhost:5000';
 
 // 注册Bus
 import VueBus from 'vue-bus';

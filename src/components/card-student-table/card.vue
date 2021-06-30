@@ -78,6 +78,7 @@
             </tr>
           </tbody>
         </table>
+
         <div class="empty" v-else>
           <img :src="require('@/assets/images/student_table-empty.png')">
           <span>正在加载数据</span>
@@ -97,13 +98,7 @@ export default {
   components: {ZcDropdownItem, ZcDropdownMenu, ZcDropdown, ZcInput},
   data() {
     return {
-      students: [
-        {chinese: 90,math: 94, sno: '2002922124', category: 1},
-        {chinese: 90,math: 94, sno: '2002922124', category: 2},
-        {chinese: 90,math: 94, sno: '2002922124', category: 3},
-        {chinese: 90,math: 94, sno: '2002922124', category: 4},
-        {chinese: 90,math: 94, sno: '2002922124', category: 1},
-      ],
+      students: [],
       initial: [],
       search: '',
       category: ["第一类","第二类","第三类","第四类"],
@@ -136,7 +131,6 @@ export default {
     },
     // 选择类别
     selectCategory(msg) {
-      console.log(msg)
       if(msg)
         this.currentCategory = msg
       else
@@ -382,6 +376,7 @@ export default {
   }
   // 空
   .empty{
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;

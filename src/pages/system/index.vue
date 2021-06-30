@@ -3,15 +3,15 @@
   <div class="zc-page-system-index">
 <!--    导航-->
     <div class="aside">
-      <zc-aside></zc-aside>
+      <zc-aside style="-webkit-app-region: no-drag"></zc-aside>
     </div>
 <!--      主体内容-->
-    <div class="content">
+    <div class="content" style="-webkit-app-region: no-drag">
       <router-view/>
     </div>
 <!--    右侧内容-->
     <div class="sidebar">
-      <zc-sidebar></zc-sidebar>
+      <zc-sidebar style="-webkit-app-region: no-drag"></zc-sidebar>
     </div>
   </div>
 </template>
